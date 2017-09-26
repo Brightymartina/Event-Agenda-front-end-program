@@ -1,0 +1,60 @@
+<h1>Angular 2 CRUD Operation</h1>
+<ng-template #create>
+   <h3> Create New Article </h3>
+</ng-template>
+<div>
+ <form [formGroup]="EventForm" (ngSubmit)="onEventFormSubmit()">
+  <table>
+    <tr><td>Event Edition </td><td><input formControlName="title">
+	       <label *ngIf="eventForm.get('edition').invalid && processValidation" [ngClass] = "'error'"> Edition is required. </label>
+    </td></tr>
+	 <tr><td>Date</td><td><input formControlName="title">
+	       <label *ngIf="eventForm.get('date').invalid && processValidation" [ngClass] = "'error'"> Date is required. </label>
+    </td></tr>
+	 <tr><td>Location</td><td><input formControlName="title">
+	       <label *ngIf="eventForm.get('location').invalid && processValidation" [ngClass] = "'error'">Location is required. </label>
+    </td></tr>
+	 <tr><td>Active status</td><td><input formControlName="title">
+	       <label *ngIf="eventForm.get('isActive').invalid && processValidation" [ngClass] = "'error'"> Status is required. </label>
+    </td></tr>
+   <tr><td>
+  <button  href="#agendas">Add Agenda</button>
+ </td></tr>
+    <tr><td colspan="2">
+	    <button *ngIf="!eventIdToUpdate">CREATE</button>  
+	    <button *ngIf="eventIdToUpdate">UPDATE</button>  
+	    <button (click)="backToCreateEvent()" *ngIf="eventIdToUpdate">Go Back</button>  
+    </td></tr>
+  </table>
+ 
+ </form> 
+ 
+  <form >
+ <div id=agendas>
+    <tr><td>Agenda time</td><td><input formControlName="time">
+            </td></tr>
+	<tr><td>Description</td><td><input formControlName="description">
+	       </td></tr>
+	<tr><td>Instructor</td><td><input formControlName="instructor">
+	      </td></tr>
+	
+	</div>
+	</form>
+ 
+ 
+ 
+ 
+ </div>
+ <table>
+  <tr><th> Id</th> <th>Title</th><th>Category</th><th></th><th></th></tr>
+  <tr *ngFor="let event of allEvents" >
+        <td>{{event.eventId}}</td> <td>{{event.edition}}</td> <td>{{event.date}}</td><td>{{event.location}}</td><td>{{event.isActive}}</td>
+	<td><button type="button" (click)="loadEventToEdit(event.eventId)">Edit</button> </td> 
+	<td><button type="button" (click)="deleteEvent(event.eventId)">Delete</button></td>
+  </tr>
+</table> 
+
+</br>
+</br>
+
+<table>     
